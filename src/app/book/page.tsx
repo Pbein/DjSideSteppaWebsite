@@ -13,7 +13,7 @@ export default function BookPage() {
         </p>
 
         <form
-          action="https://formspree.io/f/2756874430100536602"
+          action="https://formspree.io/f/xeokgayd"
           method="POST"
           className="space-y-6 bg-black/60 p-8 rounded-xl border border-neonBlue shadow-[0_0_20px_#00ffff55] backdrop-blur-md"
         >
