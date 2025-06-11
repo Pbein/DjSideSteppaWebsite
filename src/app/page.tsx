@@ -29,41 +29,6 @@ export const metadata = {
 export default function HomePage() {
   return (
     <>
-      <Head>
-        <title>DJ Side Steppa | Feel the Beat</title>
-        <meta
-          name="description"
-          content="Book DJ Side Steppa for your next event. Bringing 8+ years of energy and experience to your party or corporate event."
-        /> 
-
-        {/* Open Graph Meta Tags */}
-        <meta property="og:title" content="DJ Side Steppa | Feel the Beat" />
-        <meta
-          property="og:description"
-          content="Book DJ Side Steppa for your next event. Bringing 8+ years of energy and experience to your party or corporate event."
-        />
-        <meta
-          property="og:image"
-          content="https://dj-side-steppa-website.vercel.app/og-image.jpg"
-        />
-        <meta
-          property="og:url"
-          content="https://dj-side-steppa-website.vercel.app"
-        />
-        <meta property="og:type" content="website" />
-
-        {/* Twitter Card Meta Tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="DJ Side Steppa | Feel the Beat" />
-        <meta
-          name="twitter:description"
-          content="Book DJ Side Steppa for your next event."
-        />
-        <meta
-          name="twitter:image"
-          content="https://dj-side-steppa-website.vercel.app/og-image.jpg"
-        />
-      </Head>
       <section
         className="h-screen flex flex-col justify-center items-center bg-cover bg-center px-4 text-center"
         style={{ backgroundImage: "url('/background.webp')" }}
