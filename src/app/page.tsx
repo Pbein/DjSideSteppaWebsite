@@ -1,4 +1,30 @@
-import Head from "next/head";
+export const metadata = {
+  title: "DJ Side Steppa | Feel the Beat",
+  description:
+    "Book DJ Side Steppa for your next event. Bringing 8+ years of energy and experience to your party or corporate event.",
+  openGraph: {
+    title: "DJ Side Steppa | Feel the Beat",
+    description:
+      "Book DJ Side Steppa for your next event. Bringing 8+ years of energy and experience to your party or corporate event.",
+    url: "https://dj-side-steppa-website.vercel.app",
+    siteName: "DJ Side Steppa",
+    images: [
+      {
+        url: "https://dj-side-steppa-website.vercel.app/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "DJ Side Steppa performing live",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "DJ Side Steppa | Feel the Beat",
+    description: "Book DJ Side Steppa for your next event.",
+    images: ["https://dj-side-steppa-website.vercel.app/og-image.jpg"],
+  },
+};
 
 export default function HomePage() {
   return (
