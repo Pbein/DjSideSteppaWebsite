@@ -17,25 +17,25 @@ export default function AboutPage() {
           </h1>
 
           <p className="text-lg text-white/80 leading-relaxed">
-            DJ Side Steppa isn't just a performer — he's an architect of energy.
+            DJ Side Steppa isn&#39;t just a performer — he&#39;s an architect of energy.
             With a background in both underground club culture and high-profile
             event production, Side Steppa blends synth-heavy beats, atmospheric
-            transitions, and pulse-pounding drops into a set that's not just
+            transitions, and pulse-pounding drops into a set that&#39;s not just
             heard, but felt.
           </p>
 
           <p className="text-lg text-white/70 leading-relaxed">
             From intimate lounges to large-scale festivals, Side Steppa adapts
             his style to elevate every crowd. Known for precise mixes,
-            professional presence, and total reliability, he's been the trusted
+            professional presence, and total reliability, he&#39;s been the trusted
             DJ for private events, tech parties, and synthwave-themed
             experiences across the DMV and beyond.
           </p>
 
           <p className="text-lg text-white/70 leading-relaxed">
-            Whether you're throwing a retro night, launching a product, or tying
+            Whether you&#39;re throwing a retro night, launching a product, or tying
             the knot, Side Steppa brings a polished vibe with undeniable style.
-            This isn't just music — it's a whole experience.
+            This isn&#39;t just music — it&#39;s a whole experience.
           </p>
 
           <div className="pt-18 text-center">

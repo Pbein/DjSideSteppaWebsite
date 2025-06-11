@@ -7,7 +7,7 @@ export default function ContactPage() {
           </h1>
   
           <p className="text-lg text-white/80 leading-relaxed">
-            Whether you're planning a wedding, corporate event, private party, or synthwave night,
+            Whether you&#39;re planning a wedding, corporate event, private party, or synthwave night,
             DJ Side Steppa brings professional energy, unique sound, and seamless flow to every set.
           </p>
   
