@@ -7,7 +7,7 @@ export default function Header() {
     <header className="w-full bg-black bg-opacity-80 sticky top-0 z-50 backdrop-blur-md shadow-md">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         <Link href="/">
-        <h1 className="text-neonPink font-retro text-2xl tracking-widest drop-shadow-[0_0_6px_#ff00ff]">
+        <h1 className="text-neonPink font-retro text-2xl tracking-widest drop-shadow-[0_0_6px_#ff00ff] mr-4 md:mr-0">
           DJ Side Steppa
         </h1>
         </Link>
