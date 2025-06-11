@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 export default function BookPage() {
   return (
@@ -9,7 +9,8 @@ export default function BookPage() {
         </h1>
 
         <p className="text-white/80 text-center">
-          Want to book DJ Side Steppa for an event? Fill out the form below and get a response within 1 business day.
+          Want to book DJ Side Steppa for an event? Fill out the form below and
+          get a response within 1 business day.
         </p>
 
         <form
@@ -36,6 +37,29 @@ export default function BookPage() {
               className="w-full bg-black text-white border border-white/20 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-neonBlue"
             />
           </div>
+
+          <div>
+            <label className="block mb-1 text-white/70">
+              Event Location (City & State)
+            </label>
+            <input
+              type="text"
+              name="location"
+              placeholder="e.g. Richmond, VA or Washington, DC"
+              required
+              className="w-full bg-black text-white border border-white/20 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-neonBlue"
+            />
+          </div>
+
+          <label className="block mb-1 text-white/70">
+            Estimated Guest Count
+          </label>
+          <input
+            type="number"
+            name="guest-count"
+            placeholder="e.g. 75"
+            className="w-full bg-black text-white border border-white/20 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-neonBlue"
+          />
 
           <div>
             <label className="block mb-1 text-white/70">Event Type</label>
