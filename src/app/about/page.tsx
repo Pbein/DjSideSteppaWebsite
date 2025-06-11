@@ -74,7 +74,7 @@ export default function AboutPage() {
             <div className="flex flex-col items-center space-y-2 px-4">
               <span className="text-3xl">🌍</span>
               <p className="max-w-xs text-white/80">
-                Based in DC — available nationwide
+                Based in Richmond, VA — available nationwide
               </p>
             </div>
           </div>
