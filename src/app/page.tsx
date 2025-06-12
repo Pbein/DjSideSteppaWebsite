@@ -62,7 +62,7 @@ export default function HomePage() {
             />
           </div>
           <p className="text-center mt-6 text-white/80 text-lg relative z-30">
-            🎧 Hit play and watch the magic happen! The background will pulse to the beat 🎧
+            🎧 Hit play and watch the magic happen! The background will pulse 🎧
           </p>
         </div>
       </section>

@@ -9,19 +9,37 @@ const AudioVisualizer: React.FC = () => {
   const pathname = usePathname()
   const [beatIntensity, setBeatIntensity] = useState(0)
   const [bassIntensity, setBassIntensity] = useState(0)
+  const [kickFlash, setKickFlash] = useState(0)
+  const [snareFlash, setSnareFlash] = useState(0)
 
   useEffect(() => {
     if (isPlaying && audioData.length > 0 && pathname === '/') {
-      // Calculate different frequency ranges for more dramatic effects
-      const bassData = audioData.slice(0, 25) // Low frequencies
-      const midData = audioData.slice(25, 80) // Mid frequencies
+      // Analyze realistic frequency ranges like actual audio
+      const subBass = audioData.slice(0, 10) // Sub-bass and kick (0-8%)
+      const bassData = audioData.slice(10, 25) // Bass (8-20%)
+      const lowMidData = audioData.slice(25, 51) // Low-mid (20-40%) - snare
+      const midData = audioData.slice(51, 77) // Mid (40-60%) - melody
+      const highMidData = audioData.slice(77, 102) // High-mid (60-80%) - hi-hats
+      const highData = audioData.slice(102, 128) // High (80-100%) - cymbals
       
+      // Calculate averages for different frequency ranges
+      const kickIntensity = subBass.reduce((sum, value) => sum + value, 0) / subBass.length
       const bassAverage = bassData.reduce((sum, value) => sum + value, 0) / bassData.length
+      const snareIntensity = lowMidData.reduce((sum, value) => sum + value, 0) / lowMidData.length
       const midAverage = midData.reduce((sum, value) => sum + value, 0) / midData.length
-      const overall = (bassAverage + midAverage) / 2
+      const hihatIntensity = highMidData.reduce((sum, value) => sum + value, 0) / highMidData.length
+      const cymbalIntensity = highData.reduce((sum, value) => sum + value, 0) / highData.length
       
-      setBeatIntensity(overall)
-      setBassIntensity(bassAverage)
+             // Create more musical beat intensity (emphasize kick and snare)
+       const musicalBeat = (kickIntensity * 0.4) + (snareIntensity * 0.3) + (midAverage * 0.2) + (hihatIntensity * 0.1)
+       const enhancedBass = (kickIntensity * 0.6) + (bassAverage * 0.4)
+       
+       setBeatIntensity(musicalBeat)
+       setBassIntensity(enhancedBass)
+       
+       // Set flash effects for dramatic beats
+       setKickFlash(kickIntensity > 0.7 ? kickIntensity : 0)
+       setSnareFlash(snareIntensity > 0.6 ? snareIntensity : 0)
     } else {
       setBeatIntensity(0)
       setBassIntensity(0)
@@ -41,14 +59,16 @@ const AudioVisualizer: React.FC = () => {
     return null
   }
 
-  // Dynamic CSS variables for vibrant animations
+  // Dynamic CSS variables for realistic beat-responsive animations
   const pulseStyle = {
     '--beat-intensity': beatIntensity,
     '--bass-intensity': bassIntensity,
-    '--pulse-scale': 1 + beatIntensity * 0.25,
-    '--pulse-opacity': 0.25 + beatIntensity * 0.45,
-    '--bass-scale': 1 + bassIntensity * 0.4,
-    '--bass-opacity': 0.2 + bassIntensity * 0.5,
+    '--kick-flash': kickFlash,
+    '--snare-flash': snareFlash,
+    '--pulse-scale': 1 + beatIntensity * 0.3,
+    '--pulse-opacity': 0.25 + beatIntensity * 0.5,
+    '--bass-scale': 1 + bassIntensity * 0.5,
+    '--bass-opacity': 0.2 + bassIntensity * 0.6,
   } as React.CSSProperties
 
   return (
@@ -58,31 +78,31 @@ const AudioVisualizer: React.FC = () => {
         className="fixed inset-0 pointer-events-none z-10"
         style={pulseStyle}
       >
-        {/* Primary pulse layer - Vibrant Pink */}
+        {/* Primary pulse layer - Kick responsive */}
         <div 
           className="absolute inset-0"
           style={{
             background: `radial-gradient(circle at center, 
-              rgba(255, 20, 147, ${0.2 + beatIntensity * 0.5}) 0%, 
-              rgba(255, 0, 255, ${0.1 + beatIntensity * 0.25}) 35%, 
+              rgba(255, 20, 147, ${0.2 + beatIntensity * 0.6 + kickFlash * 0.3}) 0%, 
+              rgba(255, 0, 255, ${0.1 + beatIntensity * 0.3 + kickFlash * 0.2}) 35%, 
               transparent 70%)`,
-            transform: `scale(${1 + beatIntensity * 0.3})`,
-            transition: 'all 0.08s ease-out',
-            filter: 'brightness(1.6) saturate(2.2)',
+            transform: `scale(${1 + beatIntensity * 0.4 + kickFlash * 0.2})`,
+            transition: 'all 0.05s ease-out',
+            filter: `brightness(${1.6 + kickFlash * 0.8}) saturate(${2.2 + kickFlash * 1.3})`,
           }}
         />
         
-        {/* Secondary pulse layer - Electric Blue */}
+        {/* Secondary pulse layer - Snare responsive */}
         <div 
           className="absolute inset-0"
           style={{
             background: `radial-gradient(circle at 65% 35%, 
-              rgba(0, 255, 255, ${0.15 + bassIntensity * 0.4}) 0%, 
-              rgba(0, 191, 255, ${0.08 + bassIntensity * 0.2}) 30%, 
+              rgba(0, 255, 255, ${0.15 + bassIntensity * 0.5 + snareFlash * 0.4}) 0%, 
+              rgba(0, 191, 255, ${0.08 + bassIntensity * 0.25 + snareFlash * 0.2}) 30%, 
               transparent 65%)`,
-            transform: `scale(${1 + bassIntensity * 0.45}) rotate(${beatIntensity * 60}deg)`,
-            transition: 'all 0.12s ease-out',
-            filter: 'brightness(1.8) saturate(2.5)',
+            transform: `scale(${1 + bassIntensity * 0.5 + snareFlash * 0.3}) rotate(${beatIntensity * 90 + snareFlash * 45}deg)`,
+            transition: 'all 0.08s ease-out',
+            filter: `brightness(${1.8 + snareFlash * 1.2}) saturate(${2.5 + snareFlash * 1.5})`,
           }}
         />
 
