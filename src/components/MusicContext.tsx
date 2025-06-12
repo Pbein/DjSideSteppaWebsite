@@ -40,7 +40,7 @@ export const MusicProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [currentTrack, setCurrentTrack] = useState<string | null>(null)
   const [widget, setWidget] = useState<SoundCloudWidget | null>(null)
   const widgetRef = useRef<HTMLIFrameElement | null>(null)
-  const animationRef = useRef<number>()
+  const animationRef = useRef<number | undefined>(undefined)
 
 
 
