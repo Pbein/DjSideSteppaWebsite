@@ -7,6 +7,10 @@ const config: Config = {
     extend: {
       colors: {
         neonPink: '#ff00ff',
+        neonBlue: '#00ffff',
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
       },
       fontFamily: {
         retro: ['"Orbitron"', 'sans-serif'],
