@@ -20,7 +20,7 @@ const AudioVisualizer: React.FC = () => {
       const lowMidData = audioData.slice(25, 51) // Low-mid (20-40%) - snare
       const midData = audioData.slice(51, 77) // Mid (40-60%) - melody
       const highMidData = audioData.slice(77, 102) // High-mid (60-80%) - hi-hats
-      const highData = audioData.slice(102, 128) // High (80-100%) - cymbals
+      // const highData = audioData.slice(102, 128) // High (80-100%) - cymbals
       
       // Calculate averages for different frequency ranges
       const kickIntensity = subBass.reduce((sum, value) => sum + value, 0) / subBass.length
@@ -28,7 +28,6 @@ const AudioVisualizer: React.FC = () => {
       const snareIntensity = lowMidData.reduce((sum, value) => sum + value, 0) / lowMidData.length
       const midAverage = midData.reduce((sum, value) => sum + value, 0) / midData.length
       const hihatIntensity = highMidData.reduce((sum, value) => sum + value, 0) / highMidData.length
-      const cymbalIntensity = highData.reduce((sum, value) => sum + value, 0) / highData.length
       
              // Create more musical beat intensity (emphasize kick and snare)
        const musicalBeat = (kickIntensity * 0.4) + (snareIntensity * 0.3) + (midAverage * 0.2) + (hihatIntensity * 0.1)

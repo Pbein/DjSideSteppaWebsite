@@ -8,37 +8,61 @@ interface SoundCloudPlayerProps {
   className?: string
 }
 
+// Define proper TypeScript interfaces for SoundCloud Widget API
+interface SoundCloudWidget {
+  bind: (event: string, callback: () => void) => void
+  setVolume: (volume: number) => void
+}
+
+interface SoundCloudAPI {
+  Widget: {
+    new (iframe: HTMLIFrameElement): SoundCloudWidget
+    Events: {
+      READY: string
+      PLAY: string
+      PAUSE: string
+      FINISH: string
+    }
+  }
+}
+
+declare global {
+  interface Window {
+    SC?: SoundCloudAPI
+  }
+}
+
 const SoundCloudPlayer: React.FC<SoundCloudPlayerProps> = ({ src, className = '' }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null)
   const { setIsPlaying, setCurrentTrack, volume, setVolume } = useMusicContext()
-  const [widget, setWidget] = useState<any>(null)
+  const [widget, setWidget] = useState<SoundCloudWidget | null>(null)
   const [isReady, setIsReady] = useState(false)
 
   useEffect(() => {
     const loadWidget = () => {
-      if (iframeRef.current && (window as any).SC) {
-        const widgetInstance = (window as any).SC.Widget(iframeRef.current)
+      if (iframeRef.current && window.SC) {
+        const widgetInstance = new window.SC.Widget(iframeRef.current)
         setWidget(widgetInstance)
 
         // Bind events for visual effects
-        widgetInstance.bind((window as any).SC.Widget.Events.READY, () => {
+        widgetInstance.bind(window.SC.Widget.Events.READY, () => {
           console.log('SoundCloud: Widget ready')
           setIsReady(true)
           widgetInstance.setVolume(volume)
         })
 
-        widgetInstance.bind((window as any).SC.Widget.Events.PLAY, () => {
+        widgetInstance.bind(window.SC.Widget.Events.PLAY, () => {
           console.log('SoundCloud: Music started - triggering visuals')
           setIsPlaying(true)
           setCurrentTrack('Side Steppa Live Arlington')
         })
 
-        widgetInstance.bind((window as any).SC.Widget.Events.PAUSE, () => {
+        widgetInstance.bind(window.SC.Widget.Events.PAUSE, () => {
           console.log('SoundCloud: Music paused - stopping visuals')
           setIsPlaying(false)
         })
 
-        widgetInstance.bind((window as any).SC.Widget.Events.FINISH, () => {
+        widgetInstance.bind(window.SC.Widget.Events.FINISH, () => {
           console.log('SoundCloud: Music finished - stopping visuals')
           setIsPlaying(false)
         })
@@ -46,7 +70,7 @@ const SoundCloudPlayer: React.FC<SoundCloudPlayerProps> = ({ src, className = ''
     }
 
     // Load SoundCloud Widget API
-    if (!(window as any).SC) {
+    if (!window.SC) {
       const script = document.createElement('script')
       script.src = 'https://w.soundcloud.com/player/api.js'
       script.async = true
